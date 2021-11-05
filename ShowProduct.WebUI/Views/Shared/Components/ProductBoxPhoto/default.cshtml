@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a >
+        <img src="~/img/dinamic/product/@item.ImageUrl" alt="@item.ImageUrl" style="max-height:40px;max-width:25px;min-height:40px;min-width:25px;">
+    </a>
+}

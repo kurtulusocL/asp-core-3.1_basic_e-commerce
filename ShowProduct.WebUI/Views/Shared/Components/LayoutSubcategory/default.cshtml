@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Subcategory>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a asp-controller="Product" asp-action="Subcategory" asp-route-id="@item.Id" class="dropdown-item">@item.Name</a>
+} 

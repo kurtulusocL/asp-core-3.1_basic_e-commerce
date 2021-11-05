@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+<div class="contact">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <h2>Here We Are</h2>
+                        <h3><i class="fa fa-envelope"></i>@item.Email</h3>
+                        <h3><i class="fa fa-envelope"></i>@item.OptionalEmail</h3>
+                        <h3><i class="fa fa-phone"></i>@item.Whatsapp</h3>
+                        <div class="social">
+                            @await Component.InvokeAsync("ContactSocialMedia")
+                        </div>
+                        <p></p>
+                        <a asp-controller="ContactMessage" asp-action="Index" class="btn btn-primary btn-sm">Send A Mesage</a>
+                    </div>                   
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="contact-map">
+                    @await Component.InvokeAsync("LocationMap")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

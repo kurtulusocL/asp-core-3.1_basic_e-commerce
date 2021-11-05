@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SocialMedia>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a href="@item.Url" target="_blank">
+        <img src="~/img/dinamic/socialmedia/@item.Logo" style="max-height:35px;max-width:35px;min-height:35px;min-width:35px" alt="@item.Logo" title="@item.Name" />
+    </a>
+}

@@ -1,0 +1,154 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] | Core5 Blog</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="~/img/statics/Logo 3.png" />
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800" rel="stylesheet">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/font-awesome.min.css">
+    <!-- adminpro icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/adminpro-custon-icon.css">
+    <!-- meanmenu icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/meanmenu.min.css">
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/jquery.mCustomScrollbar.min.css">
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/animate.css">
+    <!-- data-table CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="~/temp/admin/css/data-table/bootstrap-editable.css">
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/normalize.css">
+    <link rel="stylesheet" href="~/temp/admin/css/accordions.css">
+    <link rel="stylesheet" href="~/temp/admin/css/tabs.css">
+    <!-- charts C3 CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/c3.min.css">
+    <!-- forms CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/form/all-type-forms.css">
+    <link rel="stylesheet" href="~/temp/admin/css/form.css">
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/style.css">
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/temp/admin/css/responsive.css">
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="~/temp/admin/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body class="darklayout">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Header top area start-->
+    <div class="wrapper-pro">
+        <div class="left-sidebar-pro">
+            <partial name="_AdminNavbar" />
+        </div>
+        <div class="content-inner-all">
+            <div class="header-top-area">
+                <div class="fixed-header-top">
+                    <partial name="_AdminHeader" />
+                </div>
+            </div>
+
+            @RenderBody();
+        </div>
+    </div>
+    <div class="footer-copyright-area">
+        <div class="container-fluid">
+            <div class="row">
+                <partial name="_AdminFooter" />
+            </div>
+        </div>
+    </div>
+    <!-- jquery
+        ============================================ -->
+    <script src="~/temp/admin/js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="~/js/select/select.js"></script>
+    <!-- bootstrap JS
+        ============================================ -->
+    <script src="~/temp/admin/js/bootstrap.min.js"></script>
+    <!-- meanmenu JS
+        ============================================ -->
+    <script src="~/temp/admin/js/jquery.meanmenu.js"></script>
+    <!-- mCustomScrollbar JS
+        ============================================ -->
+    <script src="~/temp/admin/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- sticky JS
+        ============================================ -->
+    <script src="~/temp/admin/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+        ============================================ -->
+    <script src="~/temp/admin/js/jquery.scrollUp.min.js"></script>
+    <!-- counterup JS
+        ============================================ -->
+    <script src="~/temp/admin/js/counterup/jquery.counterup.min.js"></script>
+    <script src="~/temp/admin/js/counterup/waypoints.min.js"></script>
+    <script src="~/temp/admin/js/counterup/counterup-active.js"></script>
+    <!-- peity JS
+        ============================================ -->
+    <script src="~/temp/admin/js/peity/jquery.peity.min.js"></script>
+    <script src="~/temp/admin/js/peity/peity-active.js"></script>
+    <!-- sparkline JS
+        ============================================ -->
+    <script src="~/temp/admin/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/temp/admin/js/sparkline/sparkline-active.js"></script>
+    <!-- flot JS
+        ============================================ -->
+    <script src="~/temp/admin/js/flot/jquery.flot.js"></script>
+    <script src="~/temp/admin/js/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/temp/admin/js/flot/jquery.flot.spline.js"></script>
+    <script src="~/temp/admin/js/flot/jquery.flot.resize.js"></script>
+    <script src="~/temp/admin/js/flot/jquery.flot.pie.js"></script>
+    <script src="~/temp/admin/js/flot/Chart.min.js"></script>
+    <script src="~/temp/admin/js/flot/flot-active.js"></script>
+    <!-- map JS
+        ============================================ -->
+    <script src="~/temp/admin/js/map/raphael.min.js"></script>
+    <script src="~/temp/admin/js/map/jquery.mapael.js"></script>
+    <script src="~/temp/admin/js/map/france_departments.js"></script>
+    <script src="~/temp/admin/js/map/world_countries.js"></script>
+    <script src="~/temp/admin/js/map/usa_states.js"></script>
+    <script src="~/temp/admin/js/map/map-active.js"></script>
+    <!-- data table JS
+        ============================================ -->
+    <script src="~/temp/admin/js/data-table/bootstrap-table.js"></script>
+    <script src="~/temp/admin/js/data-table/tableExport.js"></script>
+    <script src="~/temp/admin/js/data-table/data-table-active.js"></script>
+    <script src="~/temp/admin/js/data-table/bootstrap-table-editable.js"></script>
+    <script src="~/temp/admin/js/data-table/bootstrap-editable.js"></script>
+    <script src="~/temp/admin/js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="~/temp/admin/js/data-table/colResizable-1.5.source.js"></script>
+    <script src="~/temp/admin/js/data-table/bootstrap-table-export.js"></script>
+
+    <script src="~/temp/admin/js/jquery.mockjax.js"></script>
+    <script src="~/temp/admin/js/mock-active.js"></script>
+    <script src="~/temp/admin/js/select2.js"></script>
+    <script src="~/temp/admin/js/moment.min.js"></script>
+    <script src="~/temp/admin/js/bootstrap-datetimepicker.js"></script>
+
+    <script src="~/temp/admin/js/xediable-active.js"></script>
+    <!-- main JS
+        ============================================ -->
+    <script src="~/temp/admin/js/main.js"></script>
+</body>
+</html>

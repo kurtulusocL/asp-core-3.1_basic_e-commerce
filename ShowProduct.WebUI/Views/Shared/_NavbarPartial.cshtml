@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a href="#" class="navbar-brand">MENU</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav mr-auto">
+            <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Home</a>
+            <a asp-controller="About" asp-action="Index" class="nav-item nav-link">About</a>
+            <a asp-controller="Product" asp-action="Index" class="nav-item nav-link">Products</a>
+            <a asp-controller="Contact" asp-action="Index" class="nav-item nav-link">Contact</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories</a>
+                <div class="dropdown-menu">
+                    @await Component.InvokeAsync("LayoutCategory")                   
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Subcategories</a>
+                <div class="dropdown-menu">
+                    @await Component.InvokeAsync("LayoutSubcategory")
+                </div>
+            </div>
+        </div>  
+        <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Account</a>
+                <div class="dropdown-menu">
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <a asp-controller="UserAccount" asp-action="Logout" class="dropdown-item">Logout</a>
+                    }
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <a asp-controller="UserAccount" asp-action="Login" class="dropdown-item">Login</a>
+                        <a asp-controller="UserAccount" asp-action="Register" class="dropdown-item">Register</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

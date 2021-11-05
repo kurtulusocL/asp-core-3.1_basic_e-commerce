@@ -1,0 +1,47 @@
+﻿@model UserLogin
+@{
+    ViewData["Title"] = "Login Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+<div class="login">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-lg-8">
+                <form asp-controller="UserAccount" asp-action="Login" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="login-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input class="form-control" type="email" asp-for="Email" placeholder="E-mail">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <input class="form-control" type="password" asp-for="Password" placeholder="Password">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" asp-for="RememberMe" class="custom-control-input" id="newaccount">
+                                    <label class="custom-control-label" for="newaccount">Keep me signed in</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

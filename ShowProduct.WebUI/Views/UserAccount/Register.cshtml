@@ -1,0 +1,65 @@
+﻿@model UserRegister
+@{
+    ViewData["Title"] = "Register Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+<div class="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <form asp-controller="UserAccount" asp-action="Register" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="register-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name Surname</label>
+                                <input class="form-control" asp-for="NameSurname" type="text" placeholder="Name Surname">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Username</label>
+                                <input class="form-control" asp-for="Username" type="text" placeholder="Username">
+                            </div>
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input class="form-control" type="email" asp-for="Email" placeholder="E-mail">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Birthdate</label>
+                                <input class="form-control" type="date" asp-for="Birthdate" placeholder="Birthdate">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Gender</label>
+                                <input class="form-control" type="text" asp-for="Gender" placeholder="Gender">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Gender</label>
+                                <input class="form-control" type="text" asp-for="PhoneNumber" placeholder="Phone Number">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <input class="form-control" type="password" asp-for="Password" placeholder="Password">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Confirm Password</label>
+                                <input class="form-control" type="password" asp-for="ConfirmPassword" placeholder="Confirm Password">
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>

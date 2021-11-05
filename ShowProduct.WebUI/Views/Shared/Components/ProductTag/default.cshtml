@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Tag>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    if (item.ProductId != null)
+    {
+        <a asp-controller="Product" asp-action="Tag" asp-route-id="@item.ProductId">@item.Name</a>
+    }
+}

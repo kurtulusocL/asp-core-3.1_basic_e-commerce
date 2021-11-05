@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="footer-widget">
+            <h2>Get in Touch</h2>
+            @await Component.InvokeAsync("FooterContact")
+        </div>
+    </div>    
+    <div class="col-lg-4 col-md-6">
+        <div class="footer-widget">
+            <h2>Company Info</h2>
+            <ul>
+                <li><a asp-controller="About" asp-action="Index">About Us</a></li>
+                <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="footer-widget">
+            <h2>Purchase Info</h2>
+            <ul>
+                <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row payment align-items-center">   
+    <div class="col-md-8">
+        <div class="payment-security">
+            <h2>Fallow Us:</h2>
+            @await Component.InvokeAsync("FooterSocialMedia")
+        </div>
+    </div>
+</div>

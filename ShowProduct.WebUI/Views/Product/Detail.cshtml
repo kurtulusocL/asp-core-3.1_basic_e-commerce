@@ -1,0 +1,157 @@
+﻿@model Product
+@{
+    ViewData["Title"] = @Model.Name + " Product Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            <li class="breadcrumb-item active">
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>Başarılı!</strong> @TempData["msg"].ToString()
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="product-detail">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="product-detail-top">
+                    <div class="row align-items-center">
+                        @await Component.InvokeAsync("ProductDetailPhoto", new { id = Model.Id })
+                        <div class="col-md-7">
+                            <div class="product-content">
+                                <div class="title"><h2>Name: @Model.Name</h2></div>
+                                <div class="title"><h2>Code: @Model.Code</h2></div>
+                                <div class="ratting">
+                                    <i class="fa fa-eye"></i> @Model.Hit.Value.ToString() - <span>Posted at @Model.CreatedDate.ToShortDateString()</span>
+                                    @await Component.InvokeAsync("ProductHit", new { id = Model.Id }) - <a asp-controller="Product" asp-action="CreateReport" asp-route-id="@Model.Id" target="_blank"><i class="fa fa-flag"></i></a>
+                                </div>
+                                <div class="price">
+                                    <h4>Price:</h4>
+                                    <p>$@Model.Price.ToString()</p>
+                                </div>
+                                <div class="quantity">
+                                    @if (Model.IsSpecialOffer == true)
+                                    {
+                                        <h4>Special Offer</h4> <a asp-controller="Product" asp-action="SpecialOffer" class="btn btn-sm">View More Special Offer Product</a>
+                                    }
+                                </div>
+                                <div class="p-size">
+                                    <h4>Category:</h4>
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-controller="Product" asp-action="Category" asp-route-id="@Model.CategoryId" class="btn">@Model.Category.Name</a>
+                                    </div>
+                                </div>
+                                <div class="p-color">
+                                    <h4>Subcategory:</h4>
+                                    <div class="btn-group btn-group-sm">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a asp-controller="Product" asp-action="Subcategory" asp-route-id="@Model.SubcategoryId" class="btn">@Model.Subcategory.Name</a>
+                                    </div>
+                                </div>
+                                <div class="action">
+                                    <a class="btn" asp-controller="Product" asp-action="AddBox" asp-route-id="@Model.Id"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
+                                    <a class="btn" asp-controller="Product" asp-action="CustomerBox"><i class="fa fa-shopping-bag"></i>My Shopping Box</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row product-detail-bottom">
+                    <div class="col-lg-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#description">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#specification">Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#reviews">Comments (@Model.Comments.Count())</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="description" class="container tab-pane active">
+                                <h4>Product Description</h4>
+                                @await Component.InvokeAsync("ProductDetailInformation", new { id = Model.Id })
+                            </div>
+                            <div id="specification" class="container tab-pane fade">
+                                <h4>Product specification</h4>
+                                <ul>
+                                    <li>@Model.Subtitle</li>
+                                    @if (Model.UpdatedDate != null)
+                                    {
+                                        <li>Last Updated at @Model.UpdatedDate.Value.ToShortDateString()</li>
+                                    }
+                                    <li>@Model.Comments.Count() comment</li>
+                                    <li>@Model.Reports.Count() reports</li>
+                                    <li>@Model.Pictures.Count() product image</li>
+                                    @await Component.InvokeAsync("ProductDetailTag", new { id = Model.Id })
+                                </ul>
+                            </div>
+                            <div id="reviews" class="container tab-pane fade">
+                                @if (Model.IsCommentable == true)
+                                {
+                                    <a asp-controller="Product" asp-action="CreateComment" asp-route-id="@Model.Id" target="_blank" class="btn btn-success btn-sm">Do you wanna drop any comment?</a>
+                                    <hr />
+                                }
+                                else
+                                {
+                                    <div class="reviewer">This product closed for comments. You can read comments which one typed before.</div>
+                                }
+                                @await Component.InvokeAsync("ProductComment", new { id = Model.Id })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="sidebar-widget brands">
+                    <h2 class="title">Our Categories</h2>
+                    <ul>
+                        @await Component.InvokeAsync("ProductCategory")
+                    </ul>
+                </div>
+                <div class="sidebar-widget brands">
+                    <h2 class="title">Our Subcategories</h2>
+                    <ul>
+                        @await Component.InvokeAsync("ProductSubcategory")
+                    </ul>
+                </div>
+                <div class="sidebar-widget widget-slider">
+                    <div class="sidebar-slider normal-slider">
+                        @await Component.InvokeAsync("RandomProduct")
+                    </div>
+                </div>
+                <div class="sidebar-widget widget-slider">
+                    <div class="sidebar-slider normal-slider">
+                        @await Component.InvokeAsync("ProductVideoAd")
+                    </div>
+                </div>
+                <div class="sidebar-widget tag">
+                    <h2 class="title">Product Tags</h2>
+                    @await Component.InvokeAsync("ProductTag")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand">
+    <div class="container-fluid">
+        <div class="brand-slider">
+            @await Component.InvokeAsync("ProductAd")
+        </div>
+    </div>
+</div>

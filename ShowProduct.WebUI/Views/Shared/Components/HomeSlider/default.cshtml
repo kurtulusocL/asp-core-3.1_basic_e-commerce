@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    if (item.ProductId != null)
+    {
+        <div class="header-slider-item">
+            <img src="~/img/dinamic/product/@item.ImageUrl" alt="@item.ImageUrl" title="@item.Product.Name" style="max-height:400px;max-width:600px;min-width:600px;min-height:400px" />
+            <div class="header-slider-caption">
+                <p>@item.Product.Name</p>
+                <p>@item.Product.Subtitle</p>
+                <a class="btn" asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId"><i class="fa fa-shopping-cart"></i>Shop Now</a>
+            </div>
+        </div>
+    }
+}

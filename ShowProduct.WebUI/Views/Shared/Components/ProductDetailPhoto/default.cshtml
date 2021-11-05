@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-5">
+        <div class="product-slider-single normal-slider">
+            <img src="~/img/dinamic/product/@item.ImageUrl" alt="@item.ImageUrl" style="height:100%;width:100%">
+        </div>
+        <div class="product-slider-single-nav normal-slider">
+            @await Component.InvokeAsync("ProductDetailSubPhoto", new { id = item.ProductId })
+        </div>
+    </div>
+}

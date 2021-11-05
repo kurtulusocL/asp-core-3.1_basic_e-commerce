@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId">
+        <img src="~/img/dinamic/product/@item.ImageUrl" alt="@item.ImageUrl" style="max-height:350px;max-width:350px;min-height:350px;min-width:350px">
+    </a>
+}

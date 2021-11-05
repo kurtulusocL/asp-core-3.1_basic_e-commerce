@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="slider-nav-img">
+        <img src="~/img/dinamic/product/@item.ImageUrl" alt="@item.ImageUrl" style="max-height:55px;max-width:52px;min-height:55px;min-width:52px">
+    </div>
+}

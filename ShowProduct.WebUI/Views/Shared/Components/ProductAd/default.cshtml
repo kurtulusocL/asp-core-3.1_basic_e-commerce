@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Ad>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a href="@item.Website" target="_blank">
+        <div class="brand-item">
+            <img src="~/img/dinamic/ad/@item.Photo" alt="@item.Photo" title="@item.CompanyName" style="max-height:80px;max-width:150px;min-height:80px;min-width:150px">
+        </div>
+        @await Component.InvokeAsync("AdHit", new { id = item.Id })
+    </a>
+}

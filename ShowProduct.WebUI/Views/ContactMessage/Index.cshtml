@@ -1,0 +1,52 @@
+﻿@model ContactMessage
+@{
+    ViewData["Title"] = "Send A Message For Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+<div class="checkout">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="checkout-inner">
+                    <div class="billing-address">
+                        <h2>@ViewData["Title"]</h2>
+                        <form method="post" asp-action="Index">
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name Surname *</label>
+                                    <input class="form-control" type="text" asp-for="NameSurname" placeholder="Name Surname" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>E-Mail Address *</label>
+                                    <input class="form-control" type="email" asp-for="EmailAddress" placeholder="E-Mail Address" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Subject *</label>
+                                    <input class="form-control" type="text" asp-for="Subject" placeholder="Subject">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Your Message *</label>
+                                    <textarea class="form-control" type="text" asp-for="Message" name="Message" placeholder="Your Message" cols="90" rows="7" required></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

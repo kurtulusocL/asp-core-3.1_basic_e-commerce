@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="header-top-menu tabl-d-n">
+    <ul class="nav navbar-nav mai-top-nav">
+        <li class="nav-item">
+            <a asp-controller="Admin" asp-action="Index" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Task-Mail <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+            <div role="menu" class="dropdown-menu animated flipInX">
+                <a asp-controller="SendMail" asp-action="kurtulusocL" class="dropdown-item">Send Mail</a>
+                <a asp-controller="ToDo" asp-action="Index" class="dropdown-item">Tasks</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">InBox <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+            <div role="menu" class="dropdown-menu animated flipInX">
+                <a asp-controller="Product" asp-action="kurtulusocL" class="dropdown-item">Products</a>
+                <a asp-controller="Box" asp-action="kurtulusocL" class="dropdown-item">Box</a>
+                <a asp-controller="Tag" asp-action="kurtulusocL" class="dropdown-item">Tags</a>
+                <a asp-controller="Picture" asp-action="kurtulusocL" class="dropdown-item">Images</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Operations <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+            <div role="menu" class="dropdown-menu animated flipInX">
+                <a asp-controller="Ad" asp-action="kurtulusocL" class="dropdown-item">Ad</a>
+                <a asp-controller="VideoAd" asp-action="kurtulusocL" class="dropdown-item">VideoAd</a>
+                <a asp-controller="About" asp-action="kurtulusocL" class="dropdown-item">About</a>            
+                <a asp-controller="Category" asp-action="kurtulusocL" class="dropdown-item">Category</a>
+                <a asp-controller="Subcategory" asp-action="kurtulusocL" class="dropdown-item">Subcategory</a>
+                <a asp-controller="SocialMedia" asp-action="kurtulusocL" class="dropdown-item">SocialMedia</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Contacts <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+            <div role="menu" class="dropdown-menu animated flipInX">
+                <a asp-controller="Contact" asp-action="kurtulusocL" class="dropdown-item">Contact</a>
+                <a asp-controller="Location" asp-action="kurtulusocL" class="dropdown-item">Location</a>
+                <a asp-controller="ContactMessage" asp-action="kurtulusocL" class="dropdown-item">Messages</a>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,26 @@
+﻿@model ProductDetail
+@{
+    Layout = null;
+}
+
+@if (Model.ProductId != null)
+{
+    if (Model.Desc != null)
+    {
+        <p>
+            Description: @Model.Desc
+        </p>
+    }
+    if (Model.Detail != null)
+    {
+        <p>
+            Detail: @Model.Detail
+        </p>
+    }
+    if (Model.Warning != null)
+    {
+        <p>
+            Warning: @Model.Warning
+        </p>
+    }
+}

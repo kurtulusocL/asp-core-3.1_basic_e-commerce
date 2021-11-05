@@ -1,0 +1,19 @@
+﻿@model IEnumerable<VideoAd>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="product-item">
+        <div class="product-title">
+            <a href="@item.Website" target="_blank">@item.CompanyName</a>
+        </div>
+        <div class="product-image">
+            <a href="product-detail.html">
+                <iframe src="@item.VideoUrl" frameborder="0" allowtransparency="false" loading="lazy" style="max-height:350px;max-width:350px;min-height:350px;min-width:350px"></iframe>
+            </a>
+        </div>
+        @await Component.InvokeAsync("VideoAdHit", new { id = item.Id })
+    </div>
+}

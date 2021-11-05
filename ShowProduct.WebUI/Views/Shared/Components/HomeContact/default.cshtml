@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Contact>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-6">
+        <a href="mailto:@item.Email">@item.Email</a>
+    </div>
+}

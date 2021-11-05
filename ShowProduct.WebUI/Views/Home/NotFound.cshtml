@@ -1,0 +1,51 @@
+﻿<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+    <title>404 - Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <link rel="shortcut icon" href="~/img/statics/Logo 3.png" />
+    <script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+    </script>   
+    <link rel="stylesheet" href="~/temp/error/css/style.css" type="text/css" media="all" />  
+    <link href="~/temp/error/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="w3l-error-61-404">      
+        <div class="error-61-mian">
+            <div class="wrapper">
+                <div class="errors-16-top">
+                    <div class="errors-16-info">
+                        <h3>Oooops!!!</h3>
+                        <p>Error Code @ViewBag.Code</p>
+                        <br /><br />
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Go to Home</a>
+                    </div>
+                </div>
+                <div class="copyright-footer">
+                    <div class="copy-right">
+                        <p>
+                            © 2020 - @DateTime.Now.ToLongDateString()
+                           
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

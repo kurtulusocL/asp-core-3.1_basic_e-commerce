@@ -1,0 +1,132 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+@{
+    ViewData["Title"] = "Not Special Offer Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcome-area mg-b-30 small-dn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcome-list shadow-reset">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="breadcome-heading">
+                                <a asp-controller="Product" asp-action="kurtulusocL" class="btn btn-custon-four btn-primary">Active Product List</a> - <a asp-controller="Product" asp-action="ProductDetailList" class="btn btn-custon-four btn-success">Product Detail List</a> - <a asp-controller="Product" asp-action="ProductManage" class="btn btn-custon-four btn-default">Manage Product</a> - <a asp-controller="Product" asp-action="ProductDetailMenage" class="btn btn-custon-four btn-dark">Manage Product Detail</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a asp-controller="Admin" asp-action="Index" class="btn btn-custon-four btn-default">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">@ViewData["Title"]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="admin-dashone-data-table-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="sparkline8-list shadow-reset">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>@ViewData["Title"]</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+                            <table id="table" data-toggle="table" data-search="true" data-show-columns="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <thead>
+                                    <tr>
+                                        <th data-field="Code">Code</th>
+                                        <th data-field="Name">Name</th>
+                                        <th data-field="Price">Price</th>
+                                        <th data-field="Hit">Hit</th>
+                                        <th data-field="Category">Category</th>
+                                        <th data-field="Subcategory">Subcategory</th>
+                                        <th data-field="Is Special">Is Special</th>
+                                        <th data-field="Commentable">Commentable</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Code</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Price</td>
+                                            <td>@item.Hit.Value.ToString()</td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="CategoryList" asp-route-id="@item.CategoryId" class="btn btn-default" target="_blank">@item.Category.Name</a>
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="SubcategoryList" asp-route-id="@item.SubcategoryId" class="btn btn-default" target="_blank">@item.Subcategory.Name</a>
+                                            </td>
+                                            <td>
+                                                @if (item.IsSpecialOffer == false)
+                                                {
+                                                    <p class="span span-badge">
+                                                        Not Special Offer -
+                                                    </p>
+                                                    <a asp-controller="Product" asp-action="SetSpecialOffer" asp-route-id="@item.Id" class="btn btn-dark">Set Special Offer</a>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.IsCommentable == true)
+                                                {
+                                                    <p class="span span-badge">
+                                                        Commentable -
+                                                    </p>
+                                                    <a asp-controller="Product" asp-action="SetNotCommentable" asp-route-id="@item.Id" class="btn btn-dark">Set Not Commentable</a>
+                                                }
+                                                else
+                                                {
+                                                    <p class="span span-badge">
+                                                        Not Commentable -
+                                                    </p>
+                                                    <a asp-controller="Product" asp-action="SetCommentable" asp-route-id="@item.Id" class="btn btn-dark">Set Commentable</a>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="DeActive" asp-route-id="@item.Id" class="btn btn-warning btn-xs"><i class="fa fa-level-down"></i></a>
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="CreateTag" asp-route-id="@item.Id" class="btn btn-info btn-xs"><i class="fa fa-tag"></i></a> |
+                                                <a asp-controller="Product" asp-action="CreatePicture" asp-route-id="@item.Id" class="btn btn-primary btn-xs"><i class="fa fa-image"></i></a> |
+                                                <a asp-controller="Product" asp-action="CreateProductDetail" asp-route-id="@item.Id" class="btn btn-success btn-xs"><i class="fa fa-book"></i></a> |
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.Id" class="btn btn-info btn-xs"><i class="fa fa-info"></i></a> |
+                                                <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@item.Id" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a> |
+                                                <a asp-controller="Product" asp-action="Deleted" asp-route-id="@item.Id" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <div class="pagination-info">
+                        @Html.PagedListPager(Model, page => Url.Action("NotSpecialOffer", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

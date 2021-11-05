@@ -1,0 +1,115 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<ApplicationUser>
+@{
+    ViewData["Title"] = "User List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcome-area mg-b-30 small-dn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcome-list shadow-reset">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="breadcome-heading">
+                                <a asp-controller="Admin" asp-action="AdminList" class="btn btn-custon-four btn-primary">User List</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a asp-controller="Admin" asp-action="Index" class="btn btn-custon-four btn-default">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">@ViewData["Title"]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="admin-dashone-data-table-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="sparkline8-list shadow-reset">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>@ViewData["Title"]</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+                            <table id="table" data-toggle="table" data-search="true" data-show-columns="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <thead>
+                                    <tr>
+                                        <th data-field="Name Surname">Name Surname</th>
+                                        <th data-field="E-Mail Address">E-Mail Address</th>
+                                        <th data-field="Title">Title</th>
+                                        <th data-field="Status">Status</th>
+                                        <th data-field="Username">Username</th>
+                                        <th data-field="Gender">Gender</th>
+                                        <th data-field="Birthdate">Birthdate</th>
+                                        <th data-field="Added Date">Added Date</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.NameSurname</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Title</td>
+                                            <td>
+                                                @if (item.IsConfirmed == true)
+                                                {
+                                                    <p class="span span-badge">Active</p>
+                                                    <a asp-controller="Admin" asp-action="DeActive" asp-route-id="@item.Id" class="btn btn-warning btn-xs">De Active</a>
+                                                }
+                                                else
+                                                {
+                                                    <p class="span span-badge">Not Active</p>
+                                                    <a asp-controller="Admin" asp-action="Active" asp-route-id="@item.Id" class="btn btn-warning btn-xs">Active</a>
+                                                }
+                                                @if (item.IsDeleted == true)
+                                                {
+                                                    <p class="span span-badge">Deleted</p>
+                                                    <a asp-controller="Admin" asp-action="NotDeleted" asp-route-id="@item.Id" class="btn btn-warning btn-xs">Not Deleted</a>
+                                                }
+                                                else
+                                                {
+                                                    <p class="span span-badge">Not Deleted</p>
+                                                    <a asp-controller="Admin" asp-action="Deleted" asp-route-id="@item.Id" class="btn btn-warning btn-xs">Deleted</a>
+                                                }
+                                            </td>
+                                            <td>@item.UserName</td>
+                                            <td>@item.Gender</td>
+                                            <td>@item.Birthdate.ToShortDateString()</td>
+                                            <td>@item.CreatedDate.ToShortDateString()</td>
+                                            <td>
+                                                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <div class="pagination-info">
+                        @Html.PagedListPager(Model, page => Url.Action("UserList", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+@{
+    ViewData["Title"] = "Product List by Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+<div class="product-view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-view-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    @await Component.InvokeAsync("SearchProductPage")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="product-item">
+                                <div class="product-title">
+                                    <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+                                </div>
+                                <div class="product-image">
+                                    @await Component.InvokeAsync("ProductIndexPhoto", new { id = item.Id })
+                                    <div class="product-action">
+                                        <a><i class="fa fa-eye"></i> @item.Hit.Value.ToString()</a>
+                                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-info"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-price">
+                                    <h6><span>$</span>@item.Price.ToString()</h6>
+                                    @if (item.IsSpecialOffer)
+                                    {
+                                        <a asp-controller="Product" asp-action="SpecialOffer">
+                                            <p class="span span-badge">Special Offer</p>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="" asp-action="">
+                                            <p class="span span-badge">Not Special Offer</p>
+                                        </a>
+                                    }
+                                    <a class="btn btn-sm" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i>View Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="pagination">
+                    <div class="page-item">
+                        <div class="page-link">
+                            @Html.PagedListPager(Model, page => Url.Action("Category", new { page }), PagedListRenderOptionsBase.Classic)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="sidebar-widget brands">
+                    <h2 class="title">Our Categories</h2>
+                    <ul>
+                        @await Component.InvokeAsync("ProductCategory")
+                    </ul>
+                </div>
+                <div class="sidebar-widget brands">
+                    <h2 class="title">Our Subcategories</h2>
+                    <ul>
+                        @await Component.InvokeAsync("ProductSubcategory")
+                    </ul>
+                </div>
+                <div class="sidebar-widget widget-slider">
+                    <div class="sidebar-slider normal-slider">
+                        @await Component.InvokeAsync("RandomProduct")
+                    </div>
+                </div>
+                <div class="sidebar-widget widget-slider">
+                    <div class="sidebar-slider normal-slider">
+                        @await Component.InvokeAsync("ProductVideoAd")
+                    </div>
+                </div>
+                <div class="sidebar-widget tag">
+                    <h2 class="title">Product Tags</h2>
+                    @await Component.InvokeAsync("ProductTag")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand">
+    <div class="container-fluid">
+        <div class="brand-slider">
+            @await Component.InvokeAsync("ProductAd")
+        </div>
+    </div>
+</div>

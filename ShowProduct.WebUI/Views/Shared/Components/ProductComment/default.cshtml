@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Comment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="reviews-submitted">
+        <div class="reviewer">@item.NameSuname - <span>@item.CreatedDate.ToShortDateString()</span></div>
+        <p>
+            <img src="~/img/statics/user.jpg" style="max-height:50px;max-width:50px;min-height:50px;min-width:50px" title="@item.NameSuname" alt="img" />
+            @item.Text
+        </p>
+        @await Component.InvokeAsync("CommentHit", new { id = item.Id })
+    </div>
+}

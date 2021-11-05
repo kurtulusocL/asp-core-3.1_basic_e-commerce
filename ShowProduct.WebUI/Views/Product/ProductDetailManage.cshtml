@@ -1,0 +1,115 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<ProductDetail>
+@{
+    ViewData["Title"] = "Product Detail Manage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcome-area mg-b-30 small-dn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcome-list shadow-reset">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="breadcome-heading">
+                                <a asp-controller="Product" asp-action="Create" class="btn btn-custon-four btn-primary">+ Add New Product</a> - <a asp-controller="Product" asp-action="kurtulusocL" class="btn btn-custon-four btn-success">Active Product List</a> - <a asp-controller="Product" asp-action="ProductManage" class="btn btn-custon-four btn-default">Manage Product</a> - <a asp-controller="Product" asp-action="ProductDetailList" class="btn btn-custon-four btn-dark">Active Product Detail</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a asp-controller="Admin" asp-action="Index" class="btn btn-custon-four btn-default">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">@ViewData["Title"]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="admin-dashone-data-table-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="sparkline8-list shadow-reset">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>@ViewData["Title"]</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+                            <table id="table" data-toggle="table" data-search="true" data-show-columns="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <thead>
+                                    <tr>
+                                        <th data-field="Description">Description</th>
+                                        <th data-field="Detail">Detail</th>
+                                        <th data-field="Warning">Warning</th>
+                                        <th data-field="Product">Product</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Desc</td>
+                                            <td>@item.Detail</td>
+                                            <td>@item.Warning</td>
+                                            <td>
+                                                @if (item.ProductId != null)
+                                                {
+                                                    <span>
+                                                        ID: @item.ProductId <br />
+                                                        Name: @item.Product.Name
+                                                    </span>
+                                                    <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.ProductId" class="btn btn-link" target="_blank">@item.Product.Name</a>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.IsConfirmed == true)
+                                                {
+                                                    <a asp-controller="Product" asp-action="DeActiveDetail" asp-route-id="@item.Id" class="btn btn-warning btn-xs"><i class="fa fa-level-down"></i> </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-controller="Product" asp-action="ActiveDetail" asp-route-id="@item.Id" class="btn btn-warning btn-xs"><i class="fa fa-upload"></i></a>
+                                                }
+                                                @if (item.IsDeleted == true)
+                                                {
+                                                    <a asp-controller="Product" asp-action="NotDeletedDetail" asp-route-id="@item.Id" class="btn btn-warning btn-xs"><i class="fa fa-forward"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-controller="Product" asp-action="DeletedDetail" asp-route-id="@item.Id" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i></a>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="ProductDetailInfo" asp-route-id="@item.Id" class="btn btn-info btn-xs"><i class="fa fa-info"></i></a> |
+                                                <a asp-controller="Product" asp-action="EditProductDetail" asp-route-id="@item.Id" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a> |
+                                                <a asp-controller="Product" asp-action="DeleteDetail" asp-route-id="@item.Id" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <div class="pagination-info">
+                        @Html.PagedListPager(Model, page => Url.Action("ProductDetailManage", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

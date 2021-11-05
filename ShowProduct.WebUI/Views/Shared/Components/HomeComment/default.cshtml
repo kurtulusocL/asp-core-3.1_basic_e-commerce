@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Comment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-6">
+        <div class="review-slider-item">
+            <div class="review-img">
+                <img src="~/img/statics/user.jpg" alt="Image" title="@item.NameSuname" style="max-height:150px;max-width:150px;min-height:150px;min-width:150px">
+            </div>
+            <div class="review-text">
+                <h2>@item.NameSuname</h2>
+                @if (item.ProductId != null)
+                {
+                    <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId">
+                        <h3>Product: @item.Product.Name</h3>
+                    </a>
+                }
+                <div class="ratting">
+                   @item.CreatedDate.ToShortDateString()
+                </div>
+                <p>
+                    @item.Text
+                </p>
+            </div>
+        </div>
+    </div>
+}
